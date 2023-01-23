@@ -1,1 +1,1 @@
-# terraform-vpc
+Terraform configuration that creates a VPC with a CIDR range of 10.0.0.0/16, and two private subnets with CIDR ranges of 10.0.1.0/24 and 10.0.2.0/24.
