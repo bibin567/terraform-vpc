@@ -1,23 +1,59 @@
-variable "vpc_cidr" {
-  default = "10.0.0.0/16"
-}
-
-variable "subnet1_cidr" {
-  default = "10.0.1.0/24"
-}
-
-variable "subnet2_cidr" {
-  default = "10.0.2.0/24"
+variable "aws_region" {
+  default = "eu-west-2"
 }
 
 variable "vpc_name" {
-  default = "MyVpc"
+  default = "Myvpc"
 }
 
-variable "subnet1_name" {
-  default = "mysubnet1"
+variable "private1_subnet_name" {
+  default = "private-subnet1"
 }
 
-variable "subnet2_name" {
-  default = "mysubnet2"
+variable "private2_subnet_name" {
+  default = "private-subnet2"
+}
+
+variable "public_subnet_name" {
+  default = "public subnet"
+}
+
+variable "sg1_name" {
+  default = "SG1"
+}
+
+variable "sg2_name" {
+  default = "SG2"
+}
+
+variable "instance1_name" {
+  default = "Instance1"
+}
+
+variable "instance2_name" {
+  default = "Instance2"
+}
+
+variable "vpc_cidr_block" {
+  default = "10.0.0.0/16"
+}
+
+variable "private_subnet_1_cidr_block" {
+  default = "10.0.1.0/24"
+}
+
+variable "private_subnet_2_cidr_block" {
+  default = "10.0.2.0/24"
+}
+
+variable "public_subnet_cidr_block" {
+  default = "10.0.0.0/24"
+}
+
+variable "public_ec2_key_name" {
+  default = "bibinaws"
+}
+
+variable "private_ec2_key_name" {
+  default = "bibinprivate"
 }
