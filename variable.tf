@@ -6,6 +6,10 @@ variable "vpc_name" {
   default = "Myvpc"
 }
 
+variable "ami_name" {
+  default = "ami-084e8c05825742534"
+}
+
 variable "private1_subnet_name" {
   default = "private-subnet1"
 }

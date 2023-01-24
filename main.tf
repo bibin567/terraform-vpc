@@ -73,7 +73,7 @@ resource "aws_security_group" "private_ec2" {
 }
 
 resource "aws_instance" "public" {
-  ami           = "ami-084e8c05825742534"
+  ami           = var.ami_name
   instance_type = "t2.micro"
   key_name      = var.public_ec2_key_name
   subnet_id     = aws_subnet.public.id
@@ -84,7 +84,7 @@ resource "aws_instance" "public" {
 }
 
 resource "aws_instance" "private" {
-  ami           = "ami-084e8c05825742534"
+  ami           = var.ami_name
   instance_type = "t2.micro"
   key_name      = var.private_ec2_key_name
   subnet_id     = aws_subnet.private_1.id
