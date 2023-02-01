@@ -1,5 +1,7 @@
 provider "aws" {
   region = var.aws_region
+  access_key = var.access_key
+  secret_key = var.secret_key
 }
 
 resource "aws_vpc" "example" {
@@ -55,10 +57,17 @@ resource "aws_security_group" "public_ec2" {
   }
 }
 
+resource "aws_eip" "bastion_ip" {
+  vpc = true
+  instance = aws_instance.bastion.id
+}
+
+
 resource "aws_security_group" "private_ec2" {
   name        = "private_ec2"
   description = "Security group for private EC2 instance"
   vpc_id      = aws_vpc.example.id
+
   tags = {
     Name = var.sg2_name
   }
@@ -67,12 +76,23 @@ resource "aws_security_group" "private_ec2" {
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
 
   }
 }
 
-resource "aws_instance" "public" {
+resource "aws_internet_gateway" "example" {
+  vpc_id = aws_vpc.example.id
+  tags = {
+    Name = "Project VPC IG"
+  }
+}
+
+#resource "aws_internet_gateway_attachment" "example" {
+#  internet_gateway_id = aws_internet_gateway.example.id
+#  vpc_id              = aws_vpc.example.id
+#}
+
+resource "aws_instance" "bastion" {
   ami           = var.ami_name
   instance_type = "t2.micro"
   key_name      = var.public_ec2_key_name

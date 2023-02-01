@@ -1,5 +1,13 @@
 variable "aws_region" {
-  default = "eu-west-2"
+  default = "us-east-1"
+}
+
+variable "access_key" {
+  default = "xxx"
+}
+
+variable "secret_key" {
+  default = "xxx"
 }
 
 variable "vpc_name" {
@@ -7,7 +15,7 @@ variable "vpc_name" {
 }
 
 variable "ami_name" {
-  default = "ami-084e8c05825742534"
+  default = "ami-0b5eea76982371e91"
 }
 
 variable "private1_subnet_name" {
