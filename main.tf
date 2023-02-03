@@ -105,12 +105,12 @@ resource "aws_instance" "bastion" {
 }
 resource "aws_key_pair" "keypair" {
   key_name   = "public"
-  public_key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIC3NsRVLjZUxO+t6m8F1ETWqrC4iBDQTOcf7JdLnsemT bibinjoy2255@gmail.com"
+  public_key = "ssh-ed25519 xxx bibinjoy2255@gmail.com"
 }
 
 resource "aws_key_pair" "private" {
   key_name   = "private"
-  public_key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIC3NsRVLjZUxO+t6m8F1ETWqrC4iBDQTOcf7JdLnsemT bibinjoy2255@gmail.com"
+  public_key = "ssh-ed25519 xxx bibinjoy2255@gmail.com"
 }
 
 resource "aws_instance" "private" {
