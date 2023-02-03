@@ -3,11 +3,11 @@ variable "aws_region" {
 }
 
 variable "access_key" {
-  default = "xxx"
+  default = "AKIASJ35P6GCXY4TMN4R"
 }
 
 variable "secret_key" {
-  default = "xxx"
+  default = "wCcvNYz1ZvcQH0xyHgfA2ubl1FKHcdOTxlN31oRK"
 }
 
 variable "vpc_name" {
@@ -63,9 +63,9 @@ variable "public_subnet_cidr_block" {
 }
 
 variable "public_ec2_key_name" {
-  default = "bibinaws"
+  default = "aws"
 }
 
-variable "private_ec2_key_name" {
-  default = "bibinprivate"
-}
+#variable "private_ec2_key_name" {
+#  default = "bibinprivate"
+#}

@@ -95,18 +95,28 @@ resource "aws_internet_gateway" "example" {
 resource "aws_instance" "bastion" {
   ami           = var.ami_name
   instance_type = "t2.micro"
-  key_name      = var.public_ec2_key_name
+  key_name      = aws_key_pair.keypair.key_name
+  associate_public_ip_address = true
   subnet_id     = aws_subnet.public.id
   vpc_security_group_ids = [aws_security_group.public_ec2.id]
   tags = {
     Name = var.instance1_name
   }
 }
+resource "aws_key_pair" "keypair" {
+  key_name   = "public"
+  public_key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIC3NsRVLjZUxO+t6m8F1ETWqrC4iBDQTOcf7JdLnsemT bibinjoy2255@gmail.com"
+}
+
+resource "aws_key_pair" "private" {
+  key_name   = "private"
+  public_key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIC3NsRVLjZUxO+t6m8F1ETWqrC4iBDQTOcf7JdLnsemT bibinjoy2255@gmail.com"
+}
 
 resource "aws_instance" "private" {
   ami           = var.ami_name
   instance_type = "t2.micro"
-  key_name      = var.private_ec2_key_name
+  key_name      = aws_key_pair.private.key_name
   subnet_id     = aws_subnet.private_1.id
   vpc_security_group_ids = [aws_security_group.private_ec2.id]
   tags = {
