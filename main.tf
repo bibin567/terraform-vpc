@@ -55,6 +55,13 @@ resource "aws_security_group" "public_ec2" {
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
+
+  egress {
+    from_port        = 0
+    to_port          = 0
+    protocol         = "-1"
+    cidr_blocks      = ["0.0.0.0/0"]
+  }
 }
 
 resource "aws_eip" "bastion_ip" {
@@ -76,7 +83,7 @@ resource "aws_security_group" "private_ec2" {
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
-
+    cidr_blocks = ["0.0.0.0/0"]
   }
 }
 
@@ -87,10 +94,19 @@ resource "aws_internet_gateway" "example" {
   }
 }
 
-#resource "aws_internet_gateway_attachment" "example" {
-#  internet_gateway_id = aws_internet_gateway.example.id
-#  vpc_id              = aws_vpc.example.id
-#}
+resource "aws_route_table" "public" {
+  vpc_id = aws_vpc.example.id
+
+  route {
+    cidr_block = "0.0.0.0/0"
+    gateway_id = aws_internet_gateway.example.id
+  }
+}
+
+resource "aws_route_table_association" "public" {
+  subnet_id      = aws_subnet.public.id
+  route_table_id = aws_route_table.public.id
+}
 
 resource "aws_instance" "bastion" {
   ami           = var.ami_name
@@ -105,12 +121,12 @@ resource "aws_instance" "bastion" {
 }
 resource "aws_key_pair" "keypair" {
   key_name   = "public"
-  public_key = "ssh-ed25519 xxx bibinjoy2255@gmail.com"
+  public_key = "ssh-ed25519 xxx example@gmail.com"
 }
 
 resource "aws_key_pair" "private" {
   key_name   = "private"
-  public_key = "ssh-ed25519 xxx bibinjoy2255@gmail.com"
+  public_key = "ssh-ed25519 xxx example@gmail.com"
 }
 
 resource "aws_instance" "private" {
@@ -123,4 +139,3 @@ resource "aws_instance" "private" {
     Name = var.instance2_name
   }
 }
-

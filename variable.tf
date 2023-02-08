@@ -62,10 +62,5 @@ variable "public_subnet_cidr_block" {
   default = "10.0.0.0/24"
 }
 
-variable "public_ec2_key_name" {
-  default = "aws"
-}
 
-#variable "private_ec2_key_name" {
-#  default = "bibinprivate"
-#}
+
