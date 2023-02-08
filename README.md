@@ -1,3 +1,7 @@
+# Terraform AWS EC2 Example
+This Terraform code creates an AWS VPC with a public subnet and a private subnet, launches a bastion EC2 instance in the public subnet, and launches a private EC2 instance in the private subnet.
+
+
 # VPC and EC2 Deployment
 This Terraform configuration creates a VPC with a CIDR block of `10.0.0.0/16` and two private subnets with CIDR blocks of `10.0.1.0/24` and `10.0.2.0/24`, as well as a public subnet with a CIDR block of `10.0.0.0/24`. It also creates a public EC2 instance in the public subnet with a key pair named `"xxpublic"` and a private EC2 instance in one of the private subnets with a key pair named `"xxprivate"`.
 
@@ -40,7 +44,25 @@ The following outputs are available:
 * `private_ec2_id`: The ID of the private EC2 instance.
 
 
-
+# Using Bastion Host to SSH into Private Server
+1. ssh to public server using the below command
+```bash
+ssh -i id_ed25519 ec2-user@<publicip>
+```
+2. Copy our public ip and create a file "id_ed25519" inside /home/ec2-user/.ssh/ and paste into it 
+```bash
+cd  /home/ec2-user/.ssh/
+vim id_ed25519
+ (copy and paste our publicip)
+ ```
+3. Run this command, if necessary, to ensure your key is not publicly viewable.
+```bash
+chmod 400 id_ed25519
+```
+4. Connect to your instance using its Private IP:
+```bash
+ssh -i id_ed25519 ec2-user@<privateip>
+```
 
 
 
