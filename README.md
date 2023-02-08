@@ -51,7 +51,7 @@ ssh -i id_ed25519 ec2-user@<publicip>
 ```
 2. Copy our public ip and create a file "id_ed25519" inside /home/ec2-user/.ssh/ and paste into it 
 ```bash
-cd  /home/ec2-user/.ssh/
+cd /home/ec2-user/.ssh/
 vim id_ed25519
  (copy and paste our publicip)
  ```
